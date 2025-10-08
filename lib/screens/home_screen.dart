@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const Color darkColor = Color(0xFF4A4A4A);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6C634),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         // DIUBAH: Judul AppBar sekarang menjadi sapaan pengguna
         title: Column(
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 14, color: Colors.grey[700])),
           ],
         ),
-        backgroundColor: const Color(0xFFF6C634),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         elevation: 0, // Dibuat 0 agar menyatu sempurna
         toolbarHeight: 80, // Tambahkan tinggi agar tidak terlalu sempit
         actions: [
@@ -168,11 +168,6 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _navigateAndAddNewTarget,
-        backgroundColor: darkColor,
-        child: const Icon(Icons.add, color: Colors.white),
-      ),
     );
   }
 }
@@ -203,98 +198,106 @@ class TotalSavingsCard extends StatelessWidget {
         (totalTargetAmount > 0) ? (totalCurrentAmount / totalTargetAmount) : 0;
     final int totalPercentage = (totalProgress * 100).toInt();
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: Colors.white.withOpacity(0.3),
-              width: 1.5,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            offset: const Offset(0, 4),
+            blurRadius: 12,
+            spreadRadius: 1,
+          ),
+        ],
+        border: Border.all(color: Colors.grey.withOpacity(0.2)),
+      ),
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Total Tabungan',
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: darkColor.withOpacity(0.8),
             ),
           ),
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Total Tabungan',
-                style: GoogleFonts.plusJakartaSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: darkColor.withOpacity(0.8)),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        currencyFormatter.format(totalCurrentAmount),
-                        style: GoogleFonts.plusJakartaSans(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: darkColor),
-                      ),
-                      Text(
-                        '/ ${currencyFormatter.format(totalTargetAmount)}',
-                        style: GoogleFonts.plusJakartaSans(
-                            fontSize: 18, color: darkColor.withOpacity(0.7)),
-                      ),
-                    ],
+                  Text(
+                    currencyFormatter.format(totalCurrentAmount),
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: darkColor,
+                    ),
                   ),
-                  SizedBox(
-                    width: 60,
-                    height: 60,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        CircularProgressIndicator(
-                          value: totalProgress,
-                          strokeWidth: 6,
-                          backgroundColor: darkColor.withOpacity(0.1),
-                          valueColor: const AlwaysStoppedAnimation<Color>(darkColor),
-                        ),
-                        Text(
-                          '$totalPercentage%',
-                          style: GoogleFonts.plusJakartaSans(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: darkColor),
-                        ),
-                      ],
+                  Text(
+                    '/ ${currencyFormatter.format(totalTargetAmount)}',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 18,
+                      color: darkColor.withOpacity(0.7),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
               SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: onAddNewTargetPressed,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: darkColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                  ),
-                  child: Text(
-                    'Buat Target Baru',
-                    style: GoogleFonts.plusJakartaSans(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  ),
+                width: 60,
+                height: 60,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      value: totalProgress,
+                      strokeWidth: 6,
+                      backgroundColor: const Color(0xFFE0E0E0),
+                      valueColor:
+                          const AlwaysStoppedAnimation<Color>(Color(0xFFF6C634)),
+                    ),
+                    Text(
+                      '$totalPercentage%',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xFFF6C634),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-        ),
+          const SizedBox(height: 24),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: onAddNewTargetPressed,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFF6C634),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                elevation: 2,
+              ),
+              child: Text(
+                'Buat Target Baru',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -465,6 +468,7 @@ class TargetCard extends StatelessWidget {
           },
           borderRadius: BorderRadius.circular(12),
           child: Card(
+            color: Colors.white,
             elevation: 4,
             margin: EdgeInsets.zero,
             shape:
