@@ -35,19 +35,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       title: "Catat Target Impianmu",
       body: "Mulai dari hal kecil. Catat dan rencanakan tabunganmu untuk wujudkan impian besar.",
       imagePath: 'assets/images/celengan.png',
-      color: const Color(0xFFFAD7E0), // Pink
+      color: const Color(0xFFF6C634), // Kuning
     ),
     OnboardingPageData(
       title: "Lacak Progresmu",
       body: "Pantau setiap langkah menuju tujuanmu lewat visual progres yang memotivasi.",
       imagePath: 'assets/images/celengan.png',
-      color: const Color(0xFFFFF3B0), // Kuning
+      color: const Color(0xFFF6C634), // Kuning
     ),
     OnboardingPageData(
       title: "Wujudkan Satu per Satu",
       body: "Nikmati hasil kerja kerasmu. Satu per satu impian akan tercapai dengan konsistensi.",
       imagePath: 'assets/images/celengan.png',
-      color: const Color(0xFFB8E4E9), // Biru
+      color: const Color(0xFFF6C634), // Biru
     ),
   ];
 
