@@ -116,7 +116,7 @@ class TotalSavingsCard extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: onAddNewTargetPressed,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: darkColor,
+                    backgroundColor: const Color(0xFFF6C634),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                     padding: const EdgeInsets.symmetric(vertical: 16),

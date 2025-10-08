@@ -65,9 +65,13 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
   void _showIconPicker() {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
       builder: (context) {
         return GridView.builder(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(24),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
             crossAxisSpacing: 16,
@@ -86,13 +90,12 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.yellow.shade50, // Latar ikon lebih lembut
+                  borderRadius: BorderRadius.circular(16),
                   border: _selectedIconPath == iconPath
-                      ? Border.all(color: const Color(0xFFF6C634), width: 2)
+                      ? Border.all(color: const Color(0xFFF6C634), width: 2.5) // Border kuning
                       : null,
                 ),
-                // DIUBAH: Bungkus Image.asset dengan ClipRRect
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(iconPath, fit: BoxFit.cover),
@@ -108,15 +111,17 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
   @override
   Widget build(BuildContext context) {
     const Color darkColor = Color(0xFF4A4A4A);
+    const Color accentColor = Color(0xFFF6C634);
 
     return Scaffold(
+      backgroundColor: Colors.white, // Latar utama dibuat putih agar form jelas
       appBar: AppBar(
         title: Text('Target Baru',
             style: GoogleFonts.plusJakartaSans(
                 fontWeight: FontWeight.bold, color: darkColor)),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white, // AppBar putih
         foregroundColor: darkColor,
-        elevation: 1,
+        elevation: 0, // Hilangkan bayangan agar bersih
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
@@ -146,19 +151,20 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
             const SizedBox(height: 12),
             InkWell(
               onTap: _showIconPicker,
+              borderRadius: BorderRadius.circular(16),
               child: Container(
                 height: 80,
                 width: 80,
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.yellow.shade50,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.grey.shade300)
                 ),
                 child: _selectedIconPath == null
                     ? const Icon(Icons.add_photo_alternate_outlined,
                         color: Colors.grey, size: 40)
                     : Padding(
                         padding: const EdgeInsets.all(8.0),
-                        // DIUBAH: Bungkus Image.asset dengan ClipRRect
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12.0),
                           child: Image.asset(_selectedIconPath!, fit: BoxFit.cover),
@@ -172,16 +178,18 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
               child: ElevatedButton(
                 onPressed: _saveTarget,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: darkColor,
+                  backgroundColor: accentColor, // Tombol Simpan berwarna kuning
+                  foregroundColor: darkColor, // Teks tombol jadi gelap
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
+                  elevation: 2,
                 ),
                 child: Text('Simpan Target',
                     style: GoogleFonts.plusJakartaSans(
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white)),
+                        fontWeight: FontWeight.w700,
+                    )),
               ),
             ),
           ],
@@ -191,10 +199,20 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
   }
 
   InputDecoration _buildInputDecoration(String label) {
+    const Color accentColor = Color(0xFFF6C634);
     return InputDecoration(
       labelText: label,
       labelStyle: GoogleFonts.plusJakartaSans(color: Colors.grey),
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+      // Border saat tidak aktif
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.grey.shade300)
+      ),
+      // Border saat di-klik/fokus
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: accentColor, width: 2),
+      ),
     );
   }
 }

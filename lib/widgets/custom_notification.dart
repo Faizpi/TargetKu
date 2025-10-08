@@ -30,8 +30,9 @@ class _SlideTransitionNotificationState
     _controller =
         AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
 
+    // Ubah arah animasi di sini
     _slideAnimation =
-        Tween(begin: const Offset(0, -2.0), end: const Offset(0, 0)).animate(
+        Tween(begin: const Offset(0, 2.0), end: const Offset(0, 0)).animate( // 👈 DARI -2.0 MENJADI 2.0
       CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
     );
 
@@ -54,7 +55,9 @@ class _SlideTransitionNotificationState
 
   @override
   Widget build(BuildContext context) {
-    const Color darkColor = Color(0xFF4A4A4A);
+    const Color darkColor = Color(0xFF2D3748);
+    const Color accentColor = Color(0xFFF6C634);
+
     return SlideTransition(
       position: _slideAnimation,
       child: Center(
@@ -66,7 +69,7 @@ class _SlideTransitionNotificationState
             borderRadius: BorderRadius.circular(40),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withOpacity(0.15),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
@@ -79,7 +82,7 @@ class _SlideTransitionNotificationState
                 width: 28,
                 height: 28,
                 decoration: const BoxDecoration(
-                    color: Colors.white, shape: BoxShape.circle),
+                    color: accentColor, shape: BoxShape.circle),
                 child: const Icon(Icons.check, color: darkColor, size: 18),
               ),
               const SizedBox(width: 12),
@@ -92,9 +95,10 @@ class _SlideTransitionNotificationState
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 16)),
-                  Text(widget.message,
-                      style: GoogleFonts.plusJakartaSans(
-                          color: Colors.white70, fontSize: 13)),
+                  if (widget.message.isNotEmpty)
+                    Text(widget.message,
+                        style: GoogleFonts.plusJakartaSans(
+                            color: Colors.white70, fontSize: 13)),
                 ],
               ),
             ],
