@@ -18,29 +18,33 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void _showSuccessNotification(
-      {required String title, required String message}) {
-    final overlay = Navigator.of(context).overlay;
+  // Fungsi untuk menampilkan notifikasi custom
+  void _showSuccessNotification({
+    required String title,
+    required String message,
+  }) {
+    final overlay = Overlay.of(context);
     OverlayEntry? overlayEntry;
+
     overlayEntry = OverlayEntry(
-      builder: (context) => SafeArea(
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Material(
-            color: Colors.transparent,
-            child: SlideTransitionNotification(
-              title: title,
-              message: message,
-              onRemove: () {
-                overlayEntry?.remove();
-              },
-            ),
+      builder: (context) => Positioned(
+        top: 60,
+        left: 0,
+        right: 0,
+        child: Material(
+          color: Colors.transparent,
+          child: SlideTransitionNotification(
+            title: title,
+            message: message,
+            onRemove: () {
+              overlayEntry?.remove();
+            },
           ),
         ),
       ),
     );
 
-    overlay?.insert(overlayEntry);
+    overlay.insert(overlayEntry);
   }
 
   Future<void> _navigateAndAddNewTarget() async {

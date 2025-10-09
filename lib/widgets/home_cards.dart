@@ -38,7 +38,7 @@ class TotalSavingsCard extends StatelessWidget {
             color: Colors.white.withOpacity(0.2),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: Colors.white.withOpacity(0.3),
+              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
               width: 1.5,
             ),
           ),
@@ -94,14 +94,14 @@ class TotalSavingsCard extends StatelessWidget {
                       children: [
                         CircularProgressIndicator(
                           value: totalProgress,
-                          strokeWidth: 6,
+                          strokeWidth: 14,
                           backgroundColor: darkColor.withOpacity(0.1),
-                          valueColor: const AlwaysStoppedAnimation<Color>(darkColor),
+                          valueColor: const AlwaysStoppedAnimation<Color>(const Color(0xFFF6C634)),
                         ),
                         Text(
                           '$totalPercentage%',
                           style: GoogleFonts.plusJakartaSans(
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: darkColor),
                         ),
@@ -111,25 +111,6 @@ class TotalSavingsCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: onAddNewTargetPressed,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF6C634),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                  ),
-                  child: Text(
-                    'Buat Target Baru',
-                    style: GoogleFonts.plusJakartaSans(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -205,7 +186,7 @@ class TargetCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.white.withOpacity(0.3)),
+                  border: Border.all(color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3), width: 1.5),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -238,7 +219,7 @@ class TargetCard extends StatelessWidget {
                       value: progress,
                       backgroundColor: darkColor.withOpacity(0.1),
                       valueColor:
-                          const AlwaysStoppedAnimation<Color>(darkColor),
+                          const AlwaysStoppedAnimation<Color>(const Color(0xFFF6C634)),
                       minHeight: 8,
                       borderRadius: BorderRadius.circular(4),
                     ),
