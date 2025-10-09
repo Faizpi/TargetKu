@@ -32,7 +32,7 @@ class _SlideTransitionNotificationState
 
     // Ubah arah animasi di sini
     _slideAnimation =
-        Tween(begin: const Offset(0, 2.0), end: const Offset(0, 0)).animate( // 👈 DARI -2.0 MENJADI 2.0
+        Tween(begin: const Offset(0, 2.0), end: const Offset(0, 0)).animate( 
       CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
     );
 

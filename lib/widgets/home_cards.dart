@@ -92,11 +92,15 @@ class TotalSavingsCard extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        CircularProgressIndicator(
+                        SizedBox(
+                          width: 150,
+                          height: 150,
+                          child: CircularProgressIndicator(
                           value: totalProgress,
                           strokeWidth: 14,
                           backgroundColor: darkColor.withOpacity(0.1),
                           valueColor: const AlwaysStoppedAnimation<Color>(const Color(0xFFF6C634)),
+                          ),
                         ),
                         Text(
                           '$totalPercentage%',

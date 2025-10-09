@@ -41,6 +41,18 @@ class FirestoreService {
     });
   }
 
+  // BARU: Fungsi untuk mengedit detail target
+  Future<void> editTarget({
+    required String targetId,
+    required String newTitle,
+    required double newTargetAmount,
+  }) async {
+    await _db.collection('targets').doc(targetId).update({
+      'title': newTitle,
+      'targetAmount': newTargetAmount,
+    });
+  }
+
   // Stream untuk mendapatkan semua target milik pengguna yang sedang login
   Stream<QuerySnapshot> getTargetsStream() {
     final User? user = _auth.currentUser;

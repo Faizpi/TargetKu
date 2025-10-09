@@ -141,7 +141,7 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
             TextField(
               controller: _targetAmountController,
               decoration:
-                  _buildInputDecoration('Nominal Target (Contoh: 15000000)'),
+                  _buildInputDecoration('Nominal Target (Contoh: 18000000)'),
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 32),
