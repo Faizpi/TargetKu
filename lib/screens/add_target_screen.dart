@@ -17,14 +17,22 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
   String? _selectedIconPath;
 
   final List<String> _iconList = [
-    'assets/images/saving.jpeg',
+    'assets/images/eat.jpeg',
     'assets/images/car.jpeg',
-    'assets/images/holiday.jpeg',
-    'assets/images/rumah.jpeg',
-    'assets/images/hp.jpeg',
-    'assets/images/laptop.jpeg',
+    'assets/images/japan.jpeg',
+    'assets/images/pesawat.jpeg',
     'assets/images/bike.jpeg',
     'assets/images/edu.jpeg',
+    'assets/images/laptop.jpeg',
+    'assets/images/shoe.jpeg',
+    'assets/images/hp.jpeg',
+    'assets/images/saving.jpeg',
+    'assets/images/kopi.jpeg',
+    'assets/images/rumah.jpeg',
+    'assets/images/main.jpeg',
+    'assets/images/drink.jpeg',
+    'assets/images/gunung.jpeg',
+    'assets/images/drink1.jpeg',
   ];
 
   @override
@@ -90,7 +98,7 @@ class _AddTargetScreenState extends State<AddTargetScreen> {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.yellow.shade50, // Latar ikon lebih lembut
+                  color: const Color(0xFFF6C634), // Latar ikon lebih lembut
                   borderRadius: BorderRadius.circular(16),
                   border: _selectedIconPath == iconPath
                       ? Border.all(color: const Color(0xFFF6C634), width: 2.5) // Border kuning
