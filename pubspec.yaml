@@ -46,6 +46,7 @@ dependencies:
   intl: ^0.20.2
   animate_do: ^4.2.0
   flutter_native_splash: ^2.4.6
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -109,3 +110,9 @@ flutter_native_splash:
 
   # Aktifkan untuk platform yang diinginkan
   android: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/celengan.png"
+  min_sdk_android: 21 # Pastikan ini sesuai dengan minSdk di android/app/build.gradle Anda
